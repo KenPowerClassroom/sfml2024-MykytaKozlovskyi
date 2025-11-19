@@ -2,6 +2,12 @@
 #include <time.h>
 using namespace sf;
 
+int gameWidth() {
+    int width = 32;
+
+    return width;
+}
+
 int minesweeper()
 {
     srand(time(0));
@@ -9,7 +15,7 @@ int minesweeper()
     RenderWindow app(VideoMode(400, 400), "Minesweeper!");
 
     //probably width
-    int width=32;
+    int width = gameWidth();
 
     
     int grid[12][12];
@@ -95,3 +101,4 @@ int minesweeper()
 
     return 0;
 }
+
