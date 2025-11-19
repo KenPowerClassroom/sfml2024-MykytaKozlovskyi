@@ -9,7 +9,7 @@ int minesweeper()
     RenderWindow app(VideoMode(400, 400), "Minesweeper!");
 
     //probably width
-    int w=32;
+    int width=32;
 
     
     int grid[12][12];
@@ -17,11 +17,11 @@ int minesweeper()
 
 
     //texture 
-    Texture t;
-    t.loadFromFile("images/minesweeper/tiles.jpg");
+    Texture texture;
+    texture.loadFromFile("images/minesweeper/tiles.jpg");
     
     
-    Sprite s(t);
+    Sprite sprite(texture);
 
     for (int i=1;i<=10;i++)
      for (int j=1;j<=10;j++)
@@ -59,22 +59,22 @@ int minesweeper()
         Vector2i pos = Mouse::getPosition(app);
         
         //current position of mouse
-        int x = pos.x/w;
-        int y = pos.y/w;
+        int x = pos.x/width;
+        int y = pos.y/width;
 
-        Event e;
-        while (app.pollEvent(e))
+        Event event;
+        while (app.pollEvent(event))
         {   
             //if player decide to close the game
-            if (e.type == Event::Closed)
+            if (event.type == Event::Closed)
                 app.close();
 
 
-            if (e.type == Event::MouseButtonPressed)
+            if (event.type == Event::MouseButtonPressed)
                 //when player left click on square depends on what does the square actually contain it's changing on mine/empty square
-              if (e.key.code == Mouse::Left) sgrid[x][y]=grid[x][y];
+              if (event.key.code == Mouse::Left) sgrid[x][y]=grid[x][y];
                 //if player right click on square the flag image appears on this square
-              else if (e.key.code == Mouse::Right) sgrid[x][y]=11;
+              else if (event.key.code == Mouse::Right) sgrid[x][y]=11;
         }
 
 
@@ -85,9 +85,9 @@ int minesweeper()
          for (int j=1;j<=10;j++)
           {
            if (sgrid[x][y]==9) sgrid[i][j]=grid[i][j];
-           s.setTextureRect(IntRect(sgrid[i][j]*w,0,w,w));
-           s.setPosition(i*w, j*w);
-           app.draw(s);
+           sprite.setTextureRect(IntRect(sgrid[i][j]*width,0,width,width));
+           sprite.setPosition(i*width, j*width);
+           app.draw(sprite);
           }
 
         app.display();
